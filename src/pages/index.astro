@@ -6,6 +6,7 @@ import {Window} from '../components/Window.tsx';
 import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS } from '../consts';
 import LinkTable from '../components/LinkTable.astro';
 import { getCollection } from 'astro:content';
+import { Preview } from '../components/Preview.tsx'
 const collection = await getCollection('blog');
 ---
 
@@ -18,7 +19,17 @@ const collection = await getCollection('blog');
 		<main>
       <h1>hi there, i'm <em>Tristan Radulescu</em></h1>
       <p>
-      i'm a developer based in montpellier, france. right now, i'm building <a href="https://gists.app">gists.app</a>, a code snippet platform that secure your codebase.
+      i'm a developer based in montpellier, france. right now, i'm building 
+      <Preview client:only="react">
+        <Preview.Trigger client:only="react">
+          <a href="https://gists.app">gists.app</a>
+        </Preview.Trigger>
+        <Preview.Content client:only="react">
+          <Window title='GISTS.APP' className='rotate-3'>
+            <img src="/gists.png" width={200} class="p-1" />
+            </Window>
+        </Preview.Content>
+      </Preview>, a code snippet platform that secure your codebase.
       </p>
       <p>
       i am also a student at <em>polytech montpellier</em> (in the devops section) and i'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>.

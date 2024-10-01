@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = "courtcircuits";
 export const SITE_DESCRIPTION =
-  "Tristan Radulescu - Software Engineer that like music";
+  "Tristan Radulescu - i write software and play music";
 export const SOCIALS = [
   {
     name: "Linkedin",
