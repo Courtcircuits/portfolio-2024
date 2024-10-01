@@ -2,7 +2,11 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import {Window} from '../components/Window.tsx';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS } from '../consts';
+import LinkTable from '../components/LinkTable.astro';
+import { getCollection } from 'astro:content';
+const collection = await getCollection('blog');
 ---
 
 <!doctype html>
@@ -11,40 +15,75 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+      <h1>hi there, i'm <em>Tristan Radulescu</em></h1>
+      <p>
+      i'm a developer based in montpellier, france. right now, i'm building <a href="https://gists.app">gists.app</a>, a code snippet platform that secure your codebase.
+      </p>
+      <p>
+      i am also a student at <em>polytech montpellier</em> (in the devops section) and i'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>.
+      </p>
+      <p>
+      when i'm not struggling with some random media protocol, i play music  with my alt/grunge/post-rock band <a href="https://www.instagram.com/black.april_band/">black april</a>.
+      </p>
+      <p class="w-3/4">
+      here are my socials : {
+      SOCIALS.map((item, index) => (
+      <span>
+      <a href={item.link}>{item.name}</a>
+      { index != SOCIALS.length -1 ? "·" : ""}
+      </span>
+      ))
+      }</br>
+      in case you're old school, <a href={RESUME_LINK}>download my resume here</a>.
+      </p>
+      <div class="absolute offset-right translate-y-[-100px]">
+<Window title="⏵ blmp.fm · Black April ..." className="absolute">
+        <div class="p-2 flex flex-row gap-2">
+        <img width={75} class="border-2  rounded-none border-secondaryxlight " src="/black_april.jpg"/>
+        <div>
+          <h1 class="m-0 p-0 text-[2em]">SHADES</h1>
+        <h3 class="text-secondaryxlight m-0 p-0 text-[1.5em]">BLACK APRIL</h3>
+        <span class="w-[150px] h-[5px] bg-secondaryxlight block">
+          <div class="w-1/3 h-[5px] bg-accent block"></div>
+        </span>
+        </div>
+        </div>
+      </Window>
+<Window title="⏵ blmp.fm · Black April ..." className="absolute translate-x-[10px] translate-y-[10px]">
+        <div class="p-2 flex flex-row gap-2">
+        <img width={75} class="border-2  rounded-none border-secondaryxlight " src="/black_april.jpg"/>
+        <div>
+          <h1 class="m-0 p-0 text-[2em]">SHADES</h1>
+        <h3 class="text-secondaryxlight m-0 p-0 text-[1.5em]">BLACK APRIL</h3>
+        <span class="w-[150px] h-[5px] bg-secondaryxlight block">
+          <div class="w-1/3 h-[5px] bg-accent block"></div>
+        </span>
+        </div>
+        </div>
+      </Window>
+      <Window title="⏵ blmp.fm · Black April ..." className="translate-x-[20px] translate-y-[20px]">
+        <div class="p-2 flex flex-row gap-2">
+        <img width={75} class="border-2  rounded-none border-secondaryxlight " src="/black_april.jpg"/>
+        <div>
+          <h1 class="m-0 p-0 text-[2em]">SHADES</h1>
+        <h3 class="text-secondaryxlight m-0 p-0 text-[1.5em]">BLACK APRIL</h3>
+        <span class="w-[150px] h-[5px] bg-secondaryxlight block">
+          <div class="w-1/3 h-[5px] bg-accent block"></div>
+        </span>
+        </div>
+        </div>
+      </Window>
+      </div>
+      <LinkTable title="MY WORK" items={PROJECTS}/>
+      <LinkTable title="MY WRITINGS" items={collection.map(({data, slug})=>(
+                 {
+                    name: data.title,
+                 to: `/articles/${slug}`,
+                    description: data.description
+                 }))}/>
+      <Footer/>
 		</main>
-		<Footer />
+
 	</body>
 </html>

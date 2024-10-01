@@ -10,11 +10,22 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.3",
     "@astrojs/mdx": "^3.1.5",
+    "@astrojs/react": "^3.6.2",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/tailwind": "^5.1.1",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
     "astro": "^4.15.2",
-    "@astrojs/check": "^0.9.3",
+    "framer-motion": "^11.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.13",
     "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@codedependant/semantic-release-docker": "^5.0.3"
   }
 }

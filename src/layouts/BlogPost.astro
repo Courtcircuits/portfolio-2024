@@ -1,69 +1,33 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import LinkTable from '../components/LinkTable.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+
+const collection = (await getCollection('blog')).filter((post) => post.data.title !== title);
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
+		
 	</head>
 
 	<body>
-		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
+		<Header />
+			<article class="mt-[50px]">
 				<div class="prose">
-					<div class="title">
-						<div class="date">
+          <div>
+					<div class="title flex-row flex w-full justify-between">
+						<h1 class="m-0 p-0">{title}</h1>
+						<div>
 							<FormattedDate date={pubDate} />
 							{
 								updatedDate && (
@@ -73,13 +37,33 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 								)
 							}
 						</div>
-						<h1>{title}</h1>
-						<hr />
+            
 					</div>
+          {
+              tags && (
+                <div class="tags">
+                  {
+                    tags.map((tag) => (
+                    <span class="tag"><p class="text-accent font-mono m-0 mb-0 p-0 h-fit"># </p>{tag}</span>
+                    ))
+                  }
+                </div>
+              )
+            }
+          </div>
 					<slot />
 				</div>
 			</article>
-		</main>
+
+
+      <LinkTable title="OTHER ARTICLES" items={collection.map(({data, slug})=>(
+                 {
+                    name: data.title,
+                 to: `/articles/${slug}`,
+                    description: data.description
+                 }))}/>
+
 		<Footer />
+		</main>
 	</body>
 </html>

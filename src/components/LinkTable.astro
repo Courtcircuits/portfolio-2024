@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  items: 
+    {
+      name: string;
+      to: string;
+      description: string;
+    }[]
+  
+}
+
+const {title, items} = Astro.props;
+---
+
+<section class="w-full mt-[70px]">
+  <h2>{title}</h2>
+  <ol>
+  {
+  items.map(({to, name, description}, index) => (
+  <span class="flex flex-row w-full items-end py-2">
+    <p class="m-0 w-[40px] mr-6 text-right">#{index+1}. </p>
+    <a href={to} class="no-underline">{name}</a>
+    <hr class="flex-grow mb-[7px] mx-1"/>
+    <p class="m-0">{description}</p>
+  </span>
+  ))
+  }
+  </ol>
+</section>
