@@ -1,6 +1,6 @@
 {
   "branches": ["main"],
-  "repositoryUrl": "git@github.com:gistsapp/app.git",
+  "repositoryUrl": "git@github.com:Courtcircuits/portfolio-2024.git",
   "plugins": [
     [
       "@codedependant/semantic-release-docker",
