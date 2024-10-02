@@ -16,7 +16,7 @@ export const offsetX = atom(0);
 export function Preview({ children }: { children: ReactNode }) {
   return (
     <AnimatePresence>
-      <div className="relative inline-block">{children}</div>
+      <div className="relative inline-block z-10">{children}</div>
     </AnimatePresence>
   );
 }
@@ -30,7 +30,6 @@ function Trigger({
 }) {
   return (
     <span
-      className="-z-10"
       onMouseOver={(e) => {
         isVisible.set(trigger);
       }}
@@ -69,6 +68,7 @@ function Content({
         key="modal"
         className="absolute duration-100"
         style={{
+          position: "absolute",
           left: $offsetX,
           top: $offsetY - 10,
           zIndex: 9999,

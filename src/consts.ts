@@ -21,11 +21,6 @@ export const SOCIALS = [
 
 export const PROJECTS = [
   {
-    name: "gists.app",
-    to: "https://gists.app",
-    description: "an end-to-end encrypted script vault",
-  },
-  {
     name: "beep.ovh",
     to: "https://beep.ovh",
     description: "an open source discord clone",
@@ -40,5 +35,10 @@ export const PROJECTS = [
     to: "https://github.com/dev-sys-do/sealci",
     description: "a minimalist CI engine in rust",
   },
+  {
+    name: "gists.app [wip]",
+    to: "https://gists.app",
+    description: "an end-to-end encrypted script vault",
+  },
 ];
-export const RESUME_LINK = "https://google.com";
+export const RESUME_LINK = "/cv.pdf";

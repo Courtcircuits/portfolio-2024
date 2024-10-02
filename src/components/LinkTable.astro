@@ -6,6 +6,7 @@ interface Props {
       name: string;
       to: string;
       description: string;
+      preview?: string;
     }[]
   
 }
@@ -18,12 +19,13 @@ const {title, items} = Astro.props;
   <ol>
   {
   items.map(({to, name, description}, index) => (
-  <span class="flex flex-row w-full items-end py-2">
-    <p class="m-0 w-[40px] mr-6 text-right">#{index+1}. </p>
-    <a href={to} class="no-underline">{name}</a>
-    <hr class="flex-grow mb-[7px] mx-1"/>
-    <p class="m-0">{description}</p>
-  </span>
+  <button class="relative flex flex-row w-full items-end py-2 group cursor-pointer" onclick=`location.href = '${to}';`>
+    <div class="absolute bg-accentlight w-full h-full -z-10 custom-transition"></div>
+    <p class="m-0 w-[40px] mr-6 text-right group-hover:text-white">#{index+1}. </p>
+    <a href={to} class="no-underline group-hover:text-white">{name}</a>
+    <hr class="flex-grow mb-[7px] mx-1 group-hover:border-t-white"/>
+    <p class="m-0 group-hover:text-white transition-color">{description}</p>
+  </button>
   ))
   }
   </ol>

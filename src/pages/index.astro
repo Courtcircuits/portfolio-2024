@@ -14,8 +14,8 @@ const collection = await getCollection('blog');
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <link rel="preload" as ="image" href="/gists.png"/>
-    <link rel="preload" as ="image" href="/do-compressed3.png"/>
+    <link rel="prefetch" as ="image" href="/gists.png"/>
+    <link rel="prefetch" as ="image" href="/do-compressed3.png"/>
 	</head>
 	<body>
 		<main>
@@ -49,7 +49,7 @@ const collection = await getCollection('blog');
       when i'm not struggling with some random media protocol, i play music  with my alt/grunge/post-rock band 
       <Preview client:only="react">
         <Preview.Trigger client:only="react" trigger="blackapril">
-      <a href="https://www.instagram.com/black.april_band/">black april</a>
+      <a href="https://www.instagram.com/black.april_band/">black april✨</a>
         </Preview.Trigger>
         <Preview.Content client:only="react" trigger="blackapril">
           <Window title='BLACK_APRIL.GIF' className='rotate-6'>
@@ -58,6 +58,7 @@ const collection = await getCollection('blog');
         </Preview.Content>
       </Preview>.
       </p>
+      <p class="bg-accentlight text-primary w-fit">⚠ i'm looking for an internship for summer 2025 (anywhere besides France).</p>
       <p class="w-3/4">
       here are my socials : {
       SOCIALS.map((item, index) => (
@@ -67,11 +68,21 @@ const collection = await getCollection('blog');
       </span>
       ))
       }</br>
-      in case you're old school, <a href={RESUME_LINK}>download my resume here</a>.
+      in case you're old school, 
+      <Preview client:only="react">
+        <Preview.Trigger client:only="react" trigger="cv">
+<a   href={RESUME_LINK}>download my resume here</a>
+        </Preview.Trigger>
+        <Preview.Content client:only="react" trigger="cv">
+          <Window title='RESUME.PDF' className='rotate-3'>
+            <img src="/cv.png" class="p-1" />
+            </Window>
+        </Preview.Content>
+      </Preview>.
       </p>
-      <div class="absolute offset-right translate-y-[-120px] -z-10">
+      <div class="absolute offset-right translate-y-[-110px] -z-10">
         <Window title="⏵ MY_FAV_SONG.MP3" className="translate-x-[20px] h-fit" background="bg-[#282828]">
-        <iframe src="https://open.spotify.com/embed/track/3ELryVcOSsa0r3sT6HTrfb?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" ></iframe>
+        <iframe src="https://open.spotify.com/embed/track/3ELryVcOSsa0r3sT6HTrfb?utm_source=generator&theme=0" width="100%" height="152" loading="lazy" ></iframe>
       </Window>
       </div>
 
@@ -80,7 +91,7 @@ const collection = await getCollection('blog');
                  {
                     name: data.title,
                  to: `/articles/${slug}`,
-                    description: data.description
+                description: `${data.pubDate.getFullYear()}-${data.pubDate.getMonth() + 1}-${data.pubDate.getDate()}`
                  }))}/>
       <Footer/>
 		</main>

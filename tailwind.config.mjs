@@ -7,6 +7,7 @@ export default {
     },
     colors: {
       accent: "var(--accent)",
+      accentlight: "var(--accent-light)",
       secondary: "var(--secondary)",
       secondaryxlight: "var(--secondary-x-light)",
       secondarylight: "var(--secondary-light)",
