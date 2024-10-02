@@ -21,10 +21,10 @@ const collection = await getCollection('blog');
       <p>
       i'm a developer based in montpellier, france. right now, i'm building 
       <Preview client:only="react">
-        <Preview.Trigger client:only="react">
+        <Preview.Trigger client:only="react" trigger="gists">
           <a href="https://gists.app">gists.app</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react">
+        <Preview.Content client:only="react" trigger="gists">
           <Window title='GISTS.APP' className='rotate-3'>
             <img src="/gists.png" width={200} class="p-1" />
             </Window>
@@ -32,7 +32,16 @@ const collection = await getCollection('blog');
       </Preview>, a code snippet platform that secure your codebase.
       </p>
       <p>
-      i am also a student at <em>polytech montpellier</em> (in the devops section) and i'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>.
+      i am also a student at <Preview client:only="react">
+        <Preview.Trigger client:only="react" trigger="polytech">
+          <em>polytech montpellier</em>
+        </Preview.Trigger>
+        <Preview.Content client:only="react" trigger="polytech">
+          <Window title='DO 2k23-26' className='rotate-3'>
+            <img src="/do-compressed.png" width={200} class="p-1" />
+            </Window>
+        </Preview.Content>
+      </Preview> (in the devops section) and i'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>.
       </p>
       <p>
       when i'm not struggling with some random media protocol, i play music  with my alt/grunge/post-rock band <a href="https://www.instagram.com/black.april_band/">black april</a>.

@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { atom } from "nanostores";
 import { useStore } from "@nanostores/react";
 
-export const isVisible = atom(false);
+export const isVisible = atom<string | null>(null);
 export const offsetY = atom(0);
 export const offsetX = atom(0);
 
@@ -21,18 +21,24 @@ export function Preview({ children }: { children: ReactNode }) {
   );
 }
 
-function Trigger({ children }: { children: ReactNode }) {
+function Trigger({
+  children,
+  trigger,
+}: {
+  children: ReactNode;
+  trigger: string;
+}) {
   return (
     <span
       onMouseOver={(e) => {
-        isVisible.set(true);
+        isVisible.set(trigger);
       }}
       onMouseMove={(e) => {
         offsetX.set(e.nativeEvent.offsetX);
         offsetY.set(e.nativeEvent.offsetY);
       }}
       onMouseOut={() => {
-        isVisible.set(false);
+        isVisible.set(null);
       }}
     >
       {children}
@@ -40,12 +46,18 @@ function Trigger({ children }: { children: ReactNode }) {
   );
 }
 
-function Content({ children }: { children: ReactNode }) {
+function Content({
+  children,
+  trigger,
+}: {
+  children: ReactNode;
+  trigger: string;
+}) {
   const $isVisible = useStore(isVisible);
   const $offsetX = useStore(offsetX);
   const $offsetY = useStore(offsetY);
 
-  return $isVisible && $offsetX && $offsetY ? (
+  return $isVisible && $isVisible === trigger && $offsetX && $offsetY ? (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
