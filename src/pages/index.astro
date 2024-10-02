@@ -14,6 +14,8 @@ const collection = await getCollection('blog');
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link rel="preload" as ="image" href="/gists.png"/>
+    <link rel="preload" as ="image" href="/do-compressed3.png"/>
 	</head>
 	<body>
 		<main>
@@ -38,13 +40,23 @@ const collection = await getCollection('blog');
         </Preview.Trigger>
         <Preview.Content client:only="react" trigger="polytech">
           <Window title='DO 2k23-26' className='rotate-3'>
-            <img src="/do-compressed.png" width={200} class="p-1" />
+            <img src="/do-compressed3.png" width={200} class="p-1" />
             </Window>
         </Preview.Content>
       </Preview> (in the devops section) and i'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>.
       </p>
       <p>
-      when i'm not struggling with some random media protocol, i play music  with my alt/grunge/post-rock band <a href="https://www.instagram.com/black.april_band/">black april</a>.
+      when i'm not struggling with some random media protocol, i play music  with my alt/grunge/post-rock band 
+      <Preview client:only="react">
+        <Preview.Trigger client:only="react" trigger="blackapril">
+      <a href="https://www.instagram.com/black.april_band/">black april</a>
+        </Preview.Trigger>
+        <Preview.Content client:only="react" trigger="blackapril">
+          <Window title='BLACK_APRIL.GIF' className='rotate-6'>
+            <img src="/blackapril.gif" width={200} class="p-1" />
+            </Window>
+        </Preview.Content>
+      </Preview>.
       </p>
       <p class="w-3/4">
       here are my socials : {
@@ -57,44 +69,12 @@ const collection = await getCollection('blog');
       }</br>
       in case you're old school, <a href={RESUME_LINK}>download my resume here</a>.
       </p>
-      <div class="absolute offset-right translate-y-[-100px]">
-<Window title="⏵ blmp.fm · Black April ..." className="absolute">
-        <div class="p-2 flex flex-row gap-2">
-        <img width={75} class="border-2  rounded-none border-secondaryxlight " src="/black_april.jpg"/>
-        <div>
-          <h1 class="m-0 p-0 text-[2em]">SHADES</h1>
-        <h3 class="text-secondaryxlight m-0 p-0 text-[1.5em]">BLACK APRIL</h3>
-        <span class="w-[150px] h-[5px] bg-secondaryxlight block">
-          <div class="w-1/3 h-[5px] bg-accent block"></div>
-        </span>
-        </div>
-        </div>
-      </Window>
-<Window title="⏵ blmp.fm · Black April ..." className="absolute translate-x-[10px] translate-y-[10px]">
-        <div class="p-2 flex flex-row gap-2">
-        <img width={75} class="border-2  rounded-none border-secondaryxlight " src="/black_april.jpg"/>
-        <div>
-          <h1 class="m-0 p-0 text-[2em]">SHADES</h1>
-        <h3 class="text-secondaryxlight m-0 p-0 text-[1.5em]">BLACK APRIL</h3>
-        <span class="w-[150px] h-[5px] bg-secondaryxlight block">
-          <div class="w-1/3 h-[5px] bg-accent block"></div>
-        </span>
-        </div>
-        </div>
-      </Window>
-      <Window title="⏵ blmp.fm · Black April ..." className="translate-x-[20px] translate-y-[20px]">
-        <div class="p-2 flex flex-row gap-2">
-        <img width={75} class="border-2  rounded-none border-secondaryxlight " src="/black_april.jpg"/>
-        <div>
-          <h1 class="m-0 p-0 text-[2em]">SHADES</h1>
-        <h3 class="text-secondaryxlight m-0 p-0 text-[1.5em]">BLACK APRIL</h3>
-        <span class="w-[150px] h-[5px] bg-secondaryxlight block">
-          <div class="w-1/3 h-[5px] bg-accent block"></div>
-        </span>
-        </div>
-        </div>
+      <div class="absolute offset-right translate-y-[-120px] -z-10">
+        <Window title="⏵ MY_FAV_SONG.MP3" className="translate-x-[20px] h-fit" background="bg-[#282828]">
+        <iframe src="https://open.spotify.com/embed/track/3ELryVcOSsa0r3sT6HTrfb?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" ></iframe>
       </Window>
       </div>
+
       <LinkTable title="MY WORK" items={PROJECTS}/>
       <LinkTable title="MY WRITINGS" items={collection.map(({data, slug})=>(
                  {
@@ -105,5 +85,6 @@ const collection = await getCollection('blog');
       <Footer/>
 		</main>
 
+
 	</body>
-</html>
+</html> 

@@ -30,6 +30,7 @@ function Trigger({
 }) {
   return (
     <span
+      className="-z-10"
       onMouseOver={(e) => {
         isVisible.set(trigger);
       }}
@@ -70,6 +71,7 @@ function Content({
         style={{
           left: $offsetX,
           top: $offsetY - 10,
+          zIndex: 9999,
         }}
       >
         {children}

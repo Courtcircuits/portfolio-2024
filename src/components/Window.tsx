@@ -2,10 +2,12 @@ export function Window({
   title,
   children,
   className,
+  background,
 }: {
   title: string;
   children: string;
   className: string;
+  background?: string;
 }) {
   return (
     <div
@@ -31,7 +33,10 @@ export function Window({
           />
         </svg>
       </div>
-      <div className="bg-white">{children}</div>
+
+      <div className={`${background || "bg-white"} rounded-none`}>
+        {children}
+      </div>
     </div>
   );
 }
