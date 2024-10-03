@@ -5,12 +5,19 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import LinkTable from '../components/LinkTable.astro';
+import { SOCIALS } from '../consts';
+import { hasEarlyAccess } from '../utils/get';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 
 const collection = (await getCollection('blog')).filter((post) => post.data.title !== title);
+
+export const prerender = false;
+
+const params = Astro.url.searchParams;
+console.log(params);
 ---
 
 <html lang="en">
@@ -51,7 +58,22 @@ const collection = (await getCollection('blog')).filter((post) => post.data.titl
               )
             }
           </div>
-					<slot />
+          {
+            tags?.includes("wip") ? (
+              <div class="wip">
+                <p class="text-accent  mt-[50px] mb-0 p-0 h-fit">⚠️ I'm currently working on this article. If you want to access it in early access please send me a message on :</p>
+{
+      SOCIALS.map((item, index) => (
+      <span>
+      <a href={item.link}>{item.name}</a>
+      { index != SOCIALS.length -1 ? "·" : ""}
+      </span>
+      ))
+      }
+
+              </div>
+              ) : <slot/>
+          }
 				</div>
 			</article>
 

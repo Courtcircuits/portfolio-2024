@@ -12,3 +12,4 @@ export default defineConfig({
   site: "https://courtcircuits.xyz",
   integrations: [mdx(), sitemap(), react(), tailwind()],
 });
+
