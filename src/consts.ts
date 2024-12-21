@@ -41,4 +41,27 @@ export const PROJECTS = [
     description: "an end-to-end encrypted script vault",
   },
 ];
+
+export const HACKATHONS = [
+  {
+    name: "rust ctf by thales - 3rd place",
+    to: "https://www.linkedin.com/posts/s%C3%A9bastien-lejeune-26290a15_hackathon-rust-polytechmontpellier-ugcPost-7275805156326182913-IR_B?utm_source=share&utm_medium=member_desktop",
+    description: "12-19-2024",
+  },
+  {
+    name: "'nuit de l'info' - 2nd place",
+    to: "https://nuitdelinfo.com",
+    description: "12-5-2024",
+  },
+  {
+    name: "act in space montpellier - 1st place",
+    to: "https://www.connectbycnes.fr/hackathon-actinspace",
+    description: "02-12-2022",
+  },
+  {
+    name: "'nuit de l'info' - 1st place",
+    to: "https://minitel-six.vercel.app",
+    description: "12-5-2021",
+  },
+];
 export const RESUME_LINK = "/cv.pdf";

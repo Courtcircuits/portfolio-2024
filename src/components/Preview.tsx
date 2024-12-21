@@ -40,6 +40,7 @@ function Trigger({
       onMouseOut={() => {
         isVisible.set(null);
       }}
+      className="relative z-10"
     >
       {children}
     </span>
@@ -62,11 +63,11 @@ function Content({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
-      className="m-0 p-0 w-0 absolute"
+      className="m-0 p-0 w-0 absolute z-50"
     >
       <div
         key="modal"
-        className="absolute duration-100"
+        className="absolute duration-100 up"
         style={{
           position: "absolute",
           left: $offsetX,

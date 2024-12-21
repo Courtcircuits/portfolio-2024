@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import {Window} from '../components/Window.tsx';
-import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, HACKATHONS } from '../consts';
 import LinkTable from '../components/LinkTable.astro';
 import { getCollection } from 'astro:content';
 import { Preview } from '../components/Preview.tsx'
@@ -40,7 +40,7 @@ const collection = await getCollection('blog');
         </Preview.Trigger>
         <Preview.Content client:only="react" trigger="polytech">
           <Window title='DO 2k23-26' className='rotate-3'>
-            <img src="/do-compressed3.png" width={200} class="p-1" />
+            <img src="/do-compressed3.png" width={200} class="p-1 z-100 relative" />
             </Window>
         </Preview.Content>
       </Preview> (in the devops section) and i'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>.
@@ -49,7 +49,7 @@ const collection = await getCollection('blog');
       when i'm not struggling with some random media protocol, i play music  with my alt/grunge/post-rock band 
       <Preview client:only="react">
         <Preview.Trigger client:only="react" trigger="blackapril">
-      <a href="https://www.instagram.com/black.april_band/">black april✨</a>
+      <a href="https://www.instagram.com/black.april_band/" >black april✨</a>
         </Preview.Trigger>
         <Preview.Content client:only="react" trigger="blackapril">
           <Window title='BLACK_APRIL.GIF' className='rotate-6'>
@@ -93,9 +93,15 @@ const collection = await getCollection('blog');
                  to: `/articles/${slug}`,
                 description: `${data.pubDate.getFullYear()}-${data.pubDate.getMonth() + 1}-${data.pubDate.getDate()}`
                  }))}/>
+      <LinkTable title="HACKATHONS" items={HACKATHONS}/>
       <Footer/>
 		</main>
 
 
 	</body>
+<script>
+  document.querySelectorAll(".up").forEach((el)=>{
+    el.classList.add("z-100")
+  })
+</script>
 </html> 
