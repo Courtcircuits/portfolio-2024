@@ -41,6 +41,12 @@
   font-weight: 600;
 }
 
+@font-face {
+  font-family: "Cozette";
+  src: url("/fonts/CozetteVector.ttf");
+  font-weight: 600;
+}
+
 body {
   font-family: "Lora", serif;
   margin: 0;
@@ -215,4 +221,7 @@ button:hover .custom-transition {
   transition: all 0.3s;
   transform: scaleX(1);
   transform-origin: 0 50%;
+}
+code,pre,strong,kbd,samp,var {
+  font-family: "Cozette", monospace;
 }
