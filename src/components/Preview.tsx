@@ -13,10 +13,10 @@ export const isVisible = atom<string | null>(null);
 export const offsetY = atom(0);
 export const offsetX = atom(0);
 
-export function Preview({ children }: { children: ReactNode }) {
+export function Preview({ children, classNames }: { children: ReactNode, classNames?: string }) {
   return (
     <AnimatePresence>
-      <div className="relative inline-block z-10">{children}</div>
+      <div className={"relative inline-block z-10"+ (classNames ? ` ${classNames}` : "")}>{children}</div>
     </AnimatePresence>
   );
 }

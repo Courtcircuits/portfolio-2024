@@ -1,4 +1,6 @@
 ---
+import {Preview} from './Preview.tsx';
+import {Window} from './Window.tsx';
 interface Props {
   title: string;
   items: 
@@ -19,13 +21,13 @@ const {title, items} = Astro.props;
   <ol>
   {
   items.map(({to, name, description}, index) => (
-  <button class="relative flex flex-row w-full items-end py-2 group cursor-pointer" onclick=`location.href = '${to}';`>
-    <div class="absolute bg-accentlight w-full h-full -z-10 custom-transition"></div>
-    <p class="m-0 w-[40px] mr-6 text-right group-hover:text-white">#{index+1}. </p>
-    <a href={to} class="no-underline group-hover:text-white">{name}</a>
-    <hr class="flex-grow mb-[7px] mx-1 group-hover:border-t-white"/>
-    <p class="m-0 group-hover:text-white transition-color">{description}</p>
-  </button>
+      <button class="relative flex flex-row w-full items-end py-2 group cursor-pointer" onclick=`location.href = '${to}';`>
+
+          <div class="absolute bg-accentlight w-full h-full -z-10 custom-transition"></div>
+          <p class="m-0 w-[40px] text-right group-hover:text-white">#{index+1}. </p>
+          <hr class="flex-grow mb-[7px] mx-6 mx-1 group-hover:border-t-white"/>
+          <a href={to} class="no-underline group-hover:text-white">{name}</a>
+      </button>
   ))
   }
   </ol>

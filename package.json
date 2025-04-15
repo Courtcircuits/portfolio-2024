@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview",
+    "preview": "__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=bore.pub astro preview",
     "astro": "astro"
   },
   "dependencies": {

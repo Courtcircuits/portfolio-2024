@@ -143,9 +143,29 @@ And ...drum roll 🥁... it didn't work :( We waited for a while in front of my 
 │ ● .directory(include: ["./dagger.json", "./**/*"], path: "/home/courtcircuits/projects/quatrevm"): Directory! 26.2s
 │ │ │ │ ● upload /home/courtcircuits/projects/quatrevm from h9qyncxb2hrxb3edukved5x99
 ```
-Dagger seemed to have a hard time loading our project directory.
+Dagger seemed to have a hard time loading our project directory. One cool thing with open source is that when you get stuck with that kind of issue, you can just have a look at the code. [In Dagger's codebase in the `modulesource.go` file](https://github.com/dagger/dagger/blob/main/core/modulesource.go#L381C1-L381C20) we can see that Dagger does a `diffcopy` of the module into the action container. And in our case dagger was taking so much time because we were trying to copy bit by bit a QCOW2 image of 16 giga bytes...
+
+So we went back to install a fresh windows XP virtual machine that would only weight 1 gigabyte. We tried again to run the script and it worked. It was finally time to call the `spice-protocol`.
+
+```bash
+$ spicy -p 5930
+```
+
+And we were able to see Windows XP !
+
+![starcraft in dagger](/winxp.png)
+
+Unfortunately, we were not able to launch starcraft in the VM because there was not enough memory. But we think that if we waited for the file copy to finish with our initial image, it could have been possible.
 
 
-Also I want to thank [Justin](https://github.com/jedevc) and [Tom](https://github.com/TomChv) from Dagger that gave us a lot of tips about the product and how we could make the starcraft thing happen.
+## now what ?
+
+There were some leads that we didn't go through because of the lack of time. But maybe by mounting the docker socket inside dagger we could somehow create a mounting point inside the running container. Still it's likely to not work since dagger doesn't use docker to manage the workloads.
+
+If you want to have a look at the code, you can find it [here](https://github.com/418-Error/418starcraft).
+
+Update : two days after the hackathon, I tried launching my 16 giga image in dagger but for some reason dagger was eating more and more memory. There might be a memory leak or Golang's garbage collector might have a hard time dealing the image in memory. To be frank, I don't know, I'll keep you updated on that (if I don't fall into another rabbit hole) !
+
+Finally, I want to thank [Justin](https://github.com/jedevc) and [Tom](https://github.com/TomChv) from Dagger that gave us a lot of tips about the product and how we could make the starcraft thing happen.
 
 
