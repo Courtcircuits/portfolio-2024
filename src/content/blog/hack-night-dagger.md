@@ -40,7 +40,7 @@ func (m *Quatrevm) ContainerEcho(stringArg string) *dagger.Container {
 }
 ```
 
-This command will spin up a `alpine:latest` container and execute the `echo` command with the string argument provided. All these operations withing the container created by Dagger when you start your machine. If you look at your running containers you will be able to see it.
+This command will spin up a `alpine:latest` container and execute the `echo` command with the string argument provided. All these operations are executed within the "Dagger engine" container. If you look at your running containers you will be able to see it.
 
 ```bash
 $ docker ps
