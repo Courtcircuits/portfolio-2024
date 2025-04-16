@@ -225,3 +225,13 @@ button:hover .custom-transition {
 code,pre,strong,kbd,samp,var {
   font-family: "Cozette", monospace;
 }
+
+ol {
+  font-weight: normal;
+  color: var(--secondary-light);
+  li{
+    color: var(--secondary-light);
+    font-weight: normal;
+    list-style-type: decimal;
+  }
+}

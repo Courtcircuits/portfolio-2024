@@ -20,6 +20,7 @@ const {title, items} = Astro.props;
   <h2>{title}</h2>
   <ol>
   {
+  items.length == 0 ? <p>No items</p> :
   items.map(({to, name, description}, index) => (
       <button class="relative flex flex-row w-full items-end py-2 group cursor-pointer" onclick=`location.href = '${to}';`>
 
