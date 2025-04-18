@@ -13,14 +13,14 @@ tags:
 
 This week I had the opportunity to attend for the first time the [Kubecon 2025](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/) with [Dorian Grasset](https://github.com/dorian-grst) and [Mathias Durat](https://github.com/duratm) -- huge thanks to [Polytech Montpellier](https://www.polytech.umontpellier.fr/formation/cycle-ingenieur/devops) for the tickets, you're just the best :)). 
 
-As part of the conference, we went to co-located event called the [Dagger Hack Night](https://lu.ma/hlx7s6ym). Has the name says it is a hackathon hosted by dagger, a start-up founded by docker's co-founder and that builds a ci-engine making CI's cleaner by getting rid of YAML.
+As part of the conference, we went to co-located event called the [Dagger Hack Night](https://lu.ma/hlx7s6ym). As the name suggests, it is a hackathon hosted by Dagger, a start-up founded by Docker's co-founder which is an open source runtime for composable workflows.
 
-During this hackathon, there were different tracks possible. The first one was a lab to get introduced to the dagger ecosystem. The second one was another lab to get a grasp of the AI agent features provided by Dagger and the last one (and the most interesting) was "just have fun with dagger" and...drum roll 🥁... that's what we did.
+During this hackathon, there were different track options. The first one was a lab to get introduced to the Dagger ecosystem. The second one was another lab to get a grasp of the AI agent features provided by Dagger and the last one (and the most interesting) was "just have fun with dagger" and...drum roll 🥁... that's what we did.
 
-Disclaimer : we discovered dagger the night of the event, so I might make mistakes in the explanations below. Please send me a message on [bluesky](https://bsky.app/profile/courtcircuits.bsky.social) if you spot any. Second disclaimer, this is not a tutorial but more about *a fun little story about a hackathon*.
+Disclaimer : we discovered Dagger the night of the event, so I might make mistakes in the explanations below. Please send me a message on [bluesky](https://bsky.app/profile/courtcircuits.bsky.social) if you spot any. Second disclaimer, this is not a tutorial but more about *a fun little story about a hackathon*.
 
 ## deep dive into dagger
-To understand how we did it, we need to take a step back and give an explanation on how dagger works. In a nutshell, dagger is somehow a wrapper around [buildkit](https://github.com/moby/buildkit). Buildkit is a concurrent, cache-efficient and Dockerfile-agnostic builder toolkit (at least that's what the official github repository says). In other words, buildkit provides a powerful SDK to build efficiently OCI images thanks to features like distributed workers, smart caching strategies and more. If you are having issues about build time with the barebone `docker build` command, you should definitely have a look at buildkit. Wait I have a great news for you, Dagger already did.
+To understand how we did it, we need to take a step back and give an explanation on how Dagger works. In a nutshell, Dagger is somehow a wrapper around [Buildkit](https://github.com/moby/buildkit). Buildkit is a concurrent, cache-efficient and Dockerfile-agnostic builder toolkit (at least that's what the official Github repository says). In other words, Buildkit provides a powerful SDK to build efficiently OCI images thanks to features like distributed workers, smart caching strategies and more. If you are having issues about build time with the barebone `docker build` command, you should definitely have a look at Buildkit. Wait, I have great news for you, Dagger already did.
 
 So, what does Dagger do? Well, it provides a great interface on top of buildkit to build images, you can add breakpoints to your build, cache volumes, etc. When working with Dagger, you need to init a Dagger project by picking a language. In our case we picked Golang because we love it and the Rust SDK is not mature yet :(. Then you need to write a script that will be executed by a container always alive on your machine. For more information refer to their [website](https://dagger.io/).
 
@@ -65,7 +65,7 @@ PID   USER     TIME  COMMAND
  7571 root      0:00 echo hello
 ```
 
-Look at the process **7558** carefully, it is [runc](https://github.com/opencontainers/runc) which is the container runtime used by Dagger (and many others). Inside the container, if try to run `runc list`, we can see that the container managed by runc is indeed our `echo` command since they show the same PID !
+Look at the process **7558** carefully, it is [runc](https://github.com/opencontainers/runc) which is the container runtime used by Dagger (and many others). Inside the container, if we try to run `runc list`, we can see that the container managed by runc is indeed our `echo` command since they show the same PID !
 
 ```bash
 # runc list
@@ -77,9 +77,9 @@ Ok great, so to summarize, now we know that Dagger starts a container called the
 
 ## the trick
 
-During the hackathon, we first made a quick google search to find out if anyone had already try to run a virtual machine inside Docker since we had the intuition that it would be somehow the same process. And (thanks stackoverlow) we found [this](https://stackoverflow.com/questions/48422001/how-to-launch-qemu-kvm-from-inside-a-docker-container). Basically the article says that the container starting QEMU, the hypervisor that we picked, needed to be ran in privileged mode. By default a container have access to a subset of the kernel [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) for security reasons. However, QEMU **needs** to have access to capabilities that aren't provided to a container by default.
+During the hackathon, we first did a quick google search to find out if anyone had already tried to run a virtual machine inside Docker since we had the intuition that somehow it would follow the same process. And we found [this](https://stackoverflow.com/questions/48422001/how-to-launch-qemu-kvm-from-inside-a-docker-container) on our all-time savior : StackOverflow. Basically the article says that the container starting QEMU, the hypervisor that we picked, needed to be ran in privileged mode. By default a container have access to a subset of the kernel [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) for security reasons. However, QEMU **needs** to have access to capabilities that aren't provided to a container by default.
 
-<small>Btw I will skip the fact that for some reason my Docker would not work without running with `sudo` (the joys of arch linux I guess.)</small>
+<small>*For context, at that specific moment of the hackathon, all of a sudden my Docker environment stopped to work. I lost at least half an hour debugging it ... 😿*</small>
 
 First we built a test container with the following Dockerfile.
 
@@ -95,16 +95,16 @@ And then we tried to run it.
 $ docker run --name ub16 -i --privileged -t mycontainer:latest bash
 ```
 
-It worked surprisingly well ! So far, we were really hopeful that we could manage to play starcraft from inside our CI even though my docker was still very flaky and Dorian's Golang toolchain was totally broken. The next steps were :
+It worked surprisingly well ! So far, we were really hopeful that we could manage to play Starcraft from inside our CI even though my Docker was still very flaky and Dorian's Golang toolchain was totally broken. The next steps were :
 <ol>
-<li>First, create a script to run starcraft from QEMU</li>
-<li>Write a dagger pipeline to execute the starcraft script from a privileged container </li>
+<li>First, create a script to run Starcraft from QEMU</li>
+<li>Write a Dagger pipeline to execute the starcraft script from a privileged container </li>
 <li>And finally stream the output console thanks to some kind of keyboard/mouse and console protocol. </li>
 </ol>
 
-Since we were three we could parallelize each of these steps. Dorian focused on the output console part, Mathias on how to run starcraft in a VM and for my part I focused on writing the dagger code.
+Since we were three we could parallelize each of these steps. Dorian focused on the output console part, Mathias on how to run starcraft in a VM and for my part I focused on writing the Dagger code.
 
-About how to run starcraft in a VM, I stumbled upon [this great article](https://devnonsense.com/posts/starcraft-qemu/) by [Will Daly](https://github.com/wedaly) that explains his journey in trying to run starcraft in windows XP like in the 90s. I strongly encourage you to read his blog post, it gives a great introduction to QEMU and retro-computing. Still, to sum up how to make it work, first you must find two .iso images : an installation disk of Windows XP and a Starcraft ROM. Then you will need to install Windows XP on a QCOW2 virtual hard disk has you would do for any other operating system. From that point the next step will be directly executed inside Dagger.
+Now, about how to run starcraft in a VM, I stumbled upon [this great article](https://devnonsense.com/posts/starcraft-qemu/) by [Will Daly](https://github.com/wedaly) that explains his journey in trying to run starcraft in windows XP like in the 90s. I strongly encourage you to read his blog post, it gives a great introduction to QEMU and retro-computing. Still, to sum up how to make it work, first you must find two .iso images : an installation disk of Windows XP and a Starcraft ROM (for that the [internet archive](https://archive.org/) is your friend). Then you will need to install Windows XP on a QCOW2 virtual hard disk has you would do for any other operating system. From that point the next steps will be directly executed inside Dagger.
 
 Noowww, let's have a look at our final script : 
 
@@ -141,9 +141,11 @@ func (m *Quatrevm) Run(ctx context.Context, directoryArg *dagger.Directory) *dag
 }
 ```
 In the code snippet above, we first mount the directory containing the Starcraft ROM and the Windows XP installation disk which is passed thanks to the `--directory-arg` argument.
-Then we install QEMU inside the container thanks to the `apt-get` command. We also use the `--enable-kvm` flag to enable the KVM virtualization, after trying to remove it later we figured out that we can disable the `InsecureRootCapabilities` since KVM (kernel-based virtual machine) is an hypervisor running at the kernel level which not surprisingly needs special capabilities to be ran by a program from the userland. QEMU can also act as a virtual machine manager (VMM) if used without KVM but this setup leads to huge performance loss. Since we want starcraft to run as smoothly as possible we used QEMU+KVM even though standalone QEMU would only need default kernel capabilities.
+Then we install QEMU inside the container thanks to the `apt-get` command. We also use the `--enable-kvm` flag to enable the KVM virtualization. After trying to remove it later we figured out that we can disable the `InsecureRootCapabilities` since KVM (kernel-based virtual machine) is an hypervisor running at the kernel level which not surprisingly needs special capabilities to be ran by a program from the userland. QEMU can also act as a virtual machine manager (VMM) if used without KVM but this setup leads to huge performance loss. Since we want Starcraft to run as smoothly as possible we used QEMU+KVM even though standalone QEMU would only need default kernel capabilities. It was a tradeoff that we were willing to take.
 
 About the console, we used the [spice protocol](https://en.wikipedia.org/wiki/Simple_Protocol_for_Independent_Computing_Environments) created by Red Hat which allows to stream a desktop environment from a virtual machine on a server managed by the hypervisor itself. Now QEMU acts as a server that exposes the port `5930`.
+
+<small>ℹ️ Jean-Baptiste Kempf, creator of VLC and maintainer of FFMPEG, is working on a remote desktop protocol called [Kyber](https://www.dailymotion.com/video/x8xm8w4), so far it's not yet available nor open source. But the expectations regarding this project are really high.</small>
 
 Now that we had all the pieces in place, we could finally make the starcraft thing happen.
 
@@ -158,7 +160,7 @@ And ...drum roll 🥁... it didn't work :( We waited for a while in front of my 
 ```
 Dagger seemed to have a hard time loading our project directory. One cool thing with open source is that when you get stuck with that kind of issue, you can just have a look at the code. [In Dagger's codebase in the `modulesource.go` file](https://github.com/dagger/dagger/blob/main/core/modulesource.go#L381C1-L381C20) we can see that Dagger does a `diffcopy` of the module into the action container. And in our case dagger was taking so much time because we were trying to copy bit by bit a QCOW2 image of 16 giga bytes...
 
-So we went back to install a fresh windows XP virtual machine that would only weight 1 gigabyte. We tried again to run the script and it worked. It was finally time to call the `spice-protocol`.
+So we went back to install a fresh windows XP virtual machine that would only weigh 1 gigabyte. We tried again to run the script and it worked. It was finally time to call the `spice-protocol`.
 
 ```bash
 $ spicy -p 5930
@@ -168,17 +170,15 @@ And we were able to see Windows XP !
 
 ![starcraft in dagger](/winxp.png)
 
-Unfortunately, we were not able to launch starcraft in the VM because there was not enough memory. But we think that if we waited for the file copy to finish with our initial image, it could have been possible.
+Unfortunately, we were not able to launch starcraft in the VM even though we managed to mount Starcraft's ROM. There was not enough memory for the instalation on our VM. But we think that if we waited for the file copy to finish with our initial image, it could have been possible.
 
 
 ## now what ?
 
-There were some leads that we didn't go through because of the lack of time. But maybe by mounting the docker socket inside Dagger we could somehow create a mounting point inside the running container. Some people tried [here](https://daggerverse.dev/mod/github.com/felipepimentel/daggerverse/libraries/docker@36e606fe6b7d1c9561dc60db82ab31614b838754). Still it's likely to not work since Dagger doesn't use docker to manage the workloads. 
+There were some leads that we didn't go through because of the lack of time. But maybe by mounting the docker socket inside Dagger we could somehow create a mounting point inside the running container. Some people tried [here](https://daggerverse.dev/mod/github.com/felipepimentel/daggerverse/libraries/docker@36e606fe6b7d1c9561dc60db82ab31614b838754). This article is likely to be updated because we are about to make it work !
 
 If you want to have a look at the code, you can find it [here](https://github.com/418-Error/418starcraft).
 
 Update : two days after the hackathon, I tried launching my 16 giga image in dagger but for some reason dagger was eating more and more memory. There might be a memory leak or Golang's garbage collector might have a hard time dealing the image in memory. To be frank, I don't know, I'll keep you updated on that (if I don't fall into another rabbit hole) !
 
-Finally, I want to thank [Justin](https://github.com/jedevc) and [Tom](https://github.com/TomChv) from Dagger that gave us a lot of tips about the product and how we could make the starcraft thing happen.
-
-
+Finally, I want to thank [Justin](https://github.com/jedevc) and [Tom](https://github.com/TomChv) from Dagger that gave us a lot of tips about the product and how we could make the starcraft thing happen. But also the entier Dagger team for the revisions and tips they gave me when writing this article :).
