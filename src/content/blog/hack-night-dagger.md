@@ -24,6 +24,8 @@ To understand how we did it, we need to take a step back and give an explanation
 
 So, what does Dagger do? Well, it provides a great interface on top of buildkit to build images, you can add breakpoints to your build, cache volumes, etc. When working with Dagger, you need to init a Dagger project by picking a language. In our case we picked Golang because we love it and the Rust SDK is not mature yet :(. Then you need to write a script that will be executed by a container always alive on your machine. For more information refer to their [website](https://dagger.io/).
 
+To explict, our goal was to run a virtual machine inside Dagger. Being able to run a virtual machine within a containerized environment is not trivial at all. This challenge was a great way to assess how powerful is Dagger SDK when it comes to advanced container manipulations.
+
 UPDATE : Dagger is currently trying to get rid of the `buildkit` dependency.
 
 Let's take a look at a basic script with Dagger:
