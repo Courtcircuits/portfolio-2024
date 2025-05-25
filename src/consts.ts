@@ -14,10 +14,15 @@ export const SOCIALS = [
     link: "https://github.com/Courtcircuits",
   },
   {
-    name: "Twitter",
-    link: "https://x.com/courtscircuit",
+    name: "Bluesky",
+    link: "https://bsky.app/profile/courtcircuits.xyz",
   },
 ];
+
+export const PGP_KEY = {
+  path: "/mihai.asc",
+  fingerprint: "cd7815f471de0976b69e37560e03167e7231ce9f70d201012d60e778fd35c6b4"
+}
 
 export const PROJECTS = [
   {

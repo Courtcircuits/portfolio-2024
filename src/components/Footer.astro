@@ -1,8 +1,9 @@
 ---
-import {SOCIALS} from "../consts.ts"
+import {SOCIALS, PGP_KEY} from "../consts.ts"
 const github = SOCIALS.find(({name})=> name === "Github")?.link || ""
 const linkedin = SOCIALS.find(({name})=> name === "Linkedin")?.link || ""
-const twitter = SOCIALS.find(({name})=> name === "Twitter")?.link || ""
+const bluesky = SOCIALS.find(({name})=> name === "Bluesky")?.link || ""
+const pgp = PGP_KEY;
 ---
 
 <footer class="mt-[100px] flex sm:flex-row flex-col items-center justify-between gap-5">
@@ -19,17 +20,8 @@ const twitter = SOCIALS.find(({name})=> name === "Twitter")?.link || ""
 </defs>
 </svg>
 </a>
-<a href={twitter}>
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_308_443)">
-<path d="M19.1666 2.50002C18.3686 3.06292 17.485 3.49344 16.5499 3.77502C16.048 3.19794 15.381 2.78893 14.6391 2.60329C13.8972 2.41765 13.1162 2.46435 12.4017 2.73706C11.6871 3.00978 11.0736 3.49535 10.6441 4.12812C10.2145 4.76088 9.98967 5.5103 9.99992 6.27502V7.10835C8.53545 7.14632 7.08431 6.82153 5.77576 6.16289C4.4672 5.50425 3.34185 4.53221 2.49992 3.33335C2.49992 3.33335 -0.833414 10.8334 6.66658 14.1667C4.95036 15.3317 2.90588 15.9158 0.833252 15.8334C8.33325 20 17.4999 15.8334 17.4999 6.25002C17.4991 6.0179 17.4768 5.78635 17.4333 5.55835C18.2838 4.7196 18.8839 3.66061 19.1666 2.50002Z" stroke="#4200FF" stroke-opacity="0.49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_308_443">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<a href={bluesky}>
+  <svg fill="none" viewBox="0 0 64 57" width="20" style="width: 20px; height: 18.9375px;"><path fill="#4200FF" fill-opacity="0.49" d="M13.873 3.805C21.21 9.332 29.103 20.537 32 26.55v15.882c0-.338-.13.044-.41.867-1.512 4.456-7.418 21.847-20.923 7.944-7.111-7.32-3.819-14.64 9.125-16.85-7.405 1.264-15.73-.825-18.014-9.015C1.12 23.022 0 8.51 0 6.55 0-3.268 8.579-.182 13.873 3.805ZM50.127 3.805C42.79 9.332 34.897 20.537 32 26.55v15.882c0-.338.13.044.41.867 1.512 4.456 7.418 21.847 20.923 7.944 7.111-7.32 3.819-14.64-9.125-16.85 7.405 1.264 15.73-.825 18.014-9.015C62.88 23.022 64 8.51 64 6.55c0-9.818-8.578-6.732-13.873-2.745Z"></path></svg>
 </a>
 <a href={linkedin}>
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,9 +30,12 @@ const twitter = SOCIALS.find(({name})=> name === "Twitter")?.link || ""
 <path d="M3.33341 5.00002C4.25389 5.00002 5.00008 4.25383 5.00008 3.33335C5.00008 2.41288 4.25389 1.66669 3.33341 1.66669C2.41294 1.66669 1.66675 2.41288 1.66675 3.33335C1.66675 4.25383 2.41294 5.00002 3.33341 5.00002Z" stroke="#4200FF" stroke-opacity="0.49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </a>
+<a href={pgp.path}>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4200FF" stroke-opacity="0.49" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-icon lucide-key"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg>
+</a>
 </span>
 <p class="text-xs m-0 w-2/3 italic text-center ">
-  btw, my dream would be to work for a music company. send a mail to <em>radulescutristan@courtcircuits.xyz</em> if you’re looking for a media eng. :)
+if you need to reach me, just send me an email at <em>radulescutristan@proton.me</em> with "Hi Mihai" as topic :)
 </p>
 
 <svg width="101" height="42" viewBox="0 0 101 42" fill="none" xmlns="http://www.w3.org/2000/svg">
