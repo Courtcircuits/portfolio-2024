@@ -85,7 +85,7 @@ During the hackathon, we first did a quick google search to find out if anyone h
 
 First we built a test container with the following Dockerfile.
 
-```Dockerfile
+```bash
 FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y qemu
 CMD qemu-system-x86_64 [...]
@@ -174,7 +174,6 @@ And we were able to see Windows XP !
 
 Unfortunately, we were not able to launch starcraft in the VM even though we managed to mount Starcraft's ROM. There was not enough memory for the instalation on our VM. But we think that if we waited for the file copy to finish with our initial image, it could have been possible.
 
-
 ## now what ?
 
 There were some leads that we didn't go through because of the lack of time. But maybe by mounting the docker socket inside Dagger we could somehow create a mounting point inside the running container. Some people tried [here](https://daggerverse.dev/mod/github.com/felipepimentel/daggerverse/libraries/docker@36e606fe6b7d1c9561dc60db82ab31614b838754). This article is likely to be updated because we are about to make it work !
@@ -184,3 +183,45 @@ If you want to have a look at the code, you can find it [here](https://github.co
 Update : two days after the hackathon, I tried launching my 16 giga image in dagger but for some reason dagger was eating more and more memory. There might be a memory leak or Golang's garbage collector might have a hard time dealing the image in memory. To be frank, I don't know, I'll keep you updated on that (if I don't fall into another rabbit hole) !
 
 Finally, I want to thank [Justin](https://github.com/jedevc) and [Tom](https://github.com/TomChv) from Dagger that gave us a lot of tips about the product and how we could make the starcraft thing happen. But also the entier Dagger team for the revisions and tips they gave me when writing this article :).
+
+## one month later...
+
+On the 10th of May 2025, Dagger invited us to demo our entry to their hackathon live on Youtube. So my friend and I were really eager to make starcraft happen in dagger.
+
+> SPOILER ALERT: we did it ! 🥁
+
+We gathered an afternoon to make a last rush through this project so we could finally deliver the demo in time. We restarted all from the beginning by totally changing our plan.
+The idea was to take inspiration from the [Dockur/windows](https://github.com/dockur/windows) project. Basically, dockur's project is a Windows VM inside a docker container. They manage that by providing a few scripts that configure and build cli options for `qemu`.
+
+```bash
+. utils.sh      # Load functions
+. reset.sh      # Initialize system
+. define.sh     # Define versions
+. mido.sh       # Download Windows
+. install.sh    # Run installation
+. disk.sh       # Initialize disks
+. display.sh    # Initialize graphics
+. network.sh    # Initialize network
+. samba.sh      # Configure samba
+. boot.sh       # Configure boot
+. proc.sh       # Initialize processor
+. power.sh      # Configure shutdown
+. config.sh     # Configure arguments
+```
+
+Basically, when you spin up a Dockur container, dockur will launch a script that will download the Windows ISO, install it, configure it, and finally start the VM - all that automagically. Thus if windows QCOW2 image is built directly inside the run context of the container we no longer need to bother with volumes. ISO installation files are fairly light (at least in comparison with QCOW2 disk images) so it's totally acceptable to copy them into Dagger.
+
+So that afternoon, we basically forked the dockur project and made our own version of it so it can support multiple CDROMs and ISOs (which is not supported by dockur, at least not documented).
+
+If you want more details on how technically we made it work, you can check out the [zerg-project](https://github.com/418-Error/zerg-project) repository. It contains three ways to how you can play starcraft in a containerized environment : 
+
+<ul>
+<li>With Dagger</li>
+<li>With Docker</li>
+<li>And with Docker compose</li>
+</ul>
+
+Finally, you can find bellow the video of the demo we did for Dagger :
+
+<iframe width="600" height="300px" src="https://www.youtube.com/embed/iojge2qSAbI" title="Hacking Dagger to Play StarCraft" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
