@@ -235,3 +235,13 @@ ol {
     list-style-type: decimal;
   }
 }
+
+ul {
+  font-weight: normal;
+  color: var(--secondary-light);
+  li{
+    color: var(--secondary-light);
+    font-weight: normal;
+    list-style-type: disc;
+  }
+}

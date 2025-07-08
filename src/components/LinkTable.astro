@@ -1,13 +1,13 @@
 ---
 import {Preview} from './Preview.tsx';
-import {Window} from './Window.tsx';
 interface Props {
   title: string;
   items: 
     {
       name: string;
       to: string;
-      description: string;
+      at?: string;
+      description?: string;
       preview?: string;
     }[]
   
@@ -21,13 +21,21 @@ const {title, items} = Astro.props;
   <ol>
   {
   items.length == 0 ? <p>No items</p> :
-  items.map(({to, name, description}, index) => (
+  items.map(({to, name, description, at}, index) => (
       <button class="relative flex flex-row w-full items-end py-2 group cursor-pointer" onclick=`location.href = '${to}';`>
 
           <div class="absolute bg-accentlight w-full h-full -z-10 custom-transition"></div>
           <p class="m-0 w-[40px] text-right group-hover:text-white">#{index+1}. </p>
           <hr class="flex-grow mb-[7px] mx-6 mx-1 group-hover:border-t-white"/>
-          <a href={to} class="no-underline group-hover:text-white">{name}</a>
+          <span class="flex flex-col items-end m-0 p-0 ">
+          <a href={to} class="no-underline group-hover:text-white text-right">{name}</a>
+          {
+            at ? <p class="text-right group-hover:text-white text-sm m-0 p-0">@{at}</p> : null
+          }
+          {
+            description ? <p class="text-right group-hover:text-white text-sm m-0 p-0">{description}</p> : null
+          }
+          </span>
       </button>
   ))
   }

@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import {Window} from '../components/Window.tsx';
-import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, HACKATHONS } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, HACKATHONS, TALKS } from '../consts';
 import LinkTable from '../components/LinkTable.astro';
 import { getCollection } from 'astro:content';
 import { Preview } from '../components/Preview.tsx'
@@ -93,9 +93,9 @@ const collection = await getCollection('blog');
                  {
                     name: data.title,
                  to: `/articles/${slug}`,
-                description: `${data.pubDate.getFullYear()}-${data.pubDate.getMonth() + 1}-${data.pubDate.getDate()}`
+                description: `${data.pubDate.toLocaleDateString()}`
                  }))}/>
-      <LinkTable title="HACKATHONS" items={HACKATHONS}/>
+      <LinkTable title="MY TALKS" items={TALKS}/>
       <Footer/>
 		</main>
 
