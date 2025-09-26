@@ -64,6 +64,7 @@ function Content({
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
       className="m-0 p-0 w-0 absolute z-50"
+      transition:animate="blackapril"
     >
       <div
         key="modal"

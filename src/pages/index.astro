@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import {Window} from '../components/Window.tsx';
-import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, HACKATHONS, TALKS } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, HACKATHONS, TALKS, CONTRIBUTIONS } from '../consts';
 import LinkTable from '../components/LinkTable.astro';
 import { getCollection } from 'astro:content';
 import { Preview } from '../components/Preview.tsx'
@@ -26,14 +26,14 @@ const collection = await getCollection('blog');
       I'm a developer based in montpellier, france. Right now, I'm building 
       <Preview client:only="react">
         <Preview.Trigger client:only="react" trigger="gists">
-          <a href="https://gists.app">gists.app</a>
+        <a href="https://github.com/ferriskey/ferriskey">ferris key</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="gists">
-          <Window title='GISTS.APP' className='rotate-3'>
+        <Preview.Content client:only="react" trigger="gists" transition:animate="none">
+          <Window title='FERRIS KEY' className='rotate-3'>
             <img src="/gists.png" width={200} class="p-1" />
             </Window>
         </Preview.Content>
-      </Preview>, a code snippet platform that secures your codebase by leveraging end-to-end encryption.
+      </Preview>, a next generation IAM provider that aims to make Keycloak obsolete.
       </p>
       <p>
       I am also a student at <Preview client:only="react">
@@ -45,15 +45,15 @@ const collection = await getCollection('blog');
             <img src="/do-compressed3.png" width={200} class="p-1 z-100 relative" />
             </Window>
         </Preview.Content>
-      </Preview> (in the devops section) and I'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a>. Basically I write software to help people emit less carbon thanks to a data-driven approach.
+      </Preview> (in the devops section) and I'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a> mainly working on integrating agentic AI to the platform and fixing performance issues related to realtime analytics.
       </p>
       <p>
-      When I'm not struggling with some random cryptanalysis challenge, I play music with my alt/grunge/post-rock band 
-      <Preview client:only="react">
-        <Preview.Trigger client:only="react" trigger="blackapril">
+      When I'm not struggling with some random <a href="https://www.root-me.org/Milou666">cryptanalysis</a> <a href="https://cryptohack.org/user/Milou666/">challenge</a>, I play music with my alt/grunge/post-rock band 
+      <Preview client:only="react" transition:animate="none">
+        <Preview.Trigger client:only="react" trigger="blackapril" transition:animate="none">
       <a href="https://www.instagram.com/black.april_band/" >black april✨</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="blackapril">
+        <Preview.Content client:only="react" trigger="blackapril" transition:animate="none">
           <Window title='BLACK_APRIL.GIF' className='rotate-6'>
             <img src="/blackapril.gif" width={200} class="p-1" />
             </Window>
@@ -71,24 +71,20 @@ const collection = await getCollection('blog');
       ))
       }</br>
       in case you're old school, 
-      <Preview client:only="react">
+      <Preview transition:animate="noneb" client:only="react">
         <Preview.Trigger client:only="react" trigger="cv">
-<a   href={RESUME_LINK}>download my resume here</a>
+<a   href={RESUME_LINK} transition:animate="none">download my resume here</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="cv">
-          <Window title='RESUME.PDF' className='rotate-3'>
+        <Preview.Content client:only="react" trigger="cv" transition:animate="noneb">
+          <Window transition:animate="noneb" title='RESUME.PDF' className='rotate-3'>
             <img src="/cv.png" class="p-1" />
             </Window>
         </Preview.Content>
       </Preview>.
       </p>
-      <div class="absolute offset-right translate-y-[-110px] -z-10">
-        <Window title="⏵ MY_FAV_SONG.MP3" className="translate-x-[20px] h-fit" background="bg-[#282828]">
-        <iframe src="https://open.spotify.com/embed/track/5mrbNJkXOyX0a9WHbHOxWm?utm_source=generator&theme=0" width="100%" height="152" loading="lazy" ></iframe>
-      </Window>
-      </div>
 
       <LinkTable title="MY WORK" items={PROJECTS}/>
+      <LinkTable title="MY OS CONTRIBUTIONS" items={CONTRIBUTIONS}/>
       <LinkTable title="MY WRITINGS" items={collection.map(({data, slug})=>(
                  {
                     name: data.title,
