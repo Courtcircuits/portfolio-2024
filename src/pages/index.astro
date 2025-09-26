@@ -28,7 +28,7 @@ const collection = await getCollection('blog');
         <Preview.Trigger client:only="react" trigger="gists">
         <a href="https://github.com/ferriskey/ferriskey">ferris key</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="gists" transition:animate="none">
+        <Preview.Content client:only="react" trigger="gists">
           <Window title='FERRIS KEY' className='rotate-3'>
             <img src="/gists.png" width={200} class="p-1" />
             </Window>
@@ -49,11 +49,11 @@ const collection = await getCollection('blog');
       </p>
       <p>
       When I'm not struggling with some random <a href="https://www.root-me.org/Milou666">cryptanalysis</a> <a href="https://cryptohack.org/user/Milou666/">challenge</a>, I play music with my alt/grunge/post-rock band 
-      <Preview client:only="react" transition:animate="none">
-        <Preview.Trigger client:only="react" trigger="blackapril" transition:animate="none">
+      <Preview client:only="react">
+        <Preview.Trigger client:only="react" trigger="blackapril">
       <a href="https://www.instagram.com/black.april_band/" >black april✨</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="blackapril" transition:animate="none">
+        <Preview.Content client:only="react" trigger="blackapril">
           <Window title='BLACK_APRIL.GIF' className='rotate-6'>
             <img src="/blackapril.gif" width={200} class="p-1" />
             </Window>
@@ -71,12 +71,12 @@ const collection = await getCollection('blog');
       ))
       }</br>
       in case you're old school, 
-      <Preview transition:animate="noneb" client:only="react">
+      <Preview client:only="react">
         <Preview.Trigger client:only="react" trigger="cv">
-<a   href={RESUME_LINK} transition:animate="none">download my resume here</a>
+<a   href={RESUME_LINK}>download my resume here</a>
         </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="cv" transition:animate="noneb">
-          <Window transition:animate="noneb" title='RESUME.PDF' className='rotate-3'>
+        <Preview.Content client:only="react" trigger="cv">
+          <Window title='RESUME.PDF' className='rotate-3'>
             <img src="/cv.png" class="p-1" />
             </Window>
         </Preview.Content>
