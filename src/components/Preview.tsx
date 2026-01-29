@@ -13,10 +13,12 @@ export const isVisible = atom<string | null>(null);
 export const offsetY = atom(0);
 export const offsetX = atom(0);
 
-export function Preview({ children, classNames }: { children: ReactNode, classNames?: string }) {
+export function Preview({ children, classNames, trigger }: { children: ReactNode, classNames?: string, trigger: string }) {
+  const $isVisible = useStore(isVisible);
+  const isActive = $isVisible === trigger;
   return (
     <AnimatePresence>
-      <div className={"relative inline-block z-10"+ (classNames ? ` ${classNames}` : "")}>{children}</div>
+      <div className={"relative inline-block "+ (isActive ? "z-[9999]" : "z-10") + (classNames ? ` ${classNames}` : "")}>{children}</div>
     </AnimatePresence>
   );
 }

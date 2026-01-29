@@ -24,7 +24,7 @@ const collection = await getCollection('blog');
       <h1>Hi there, I'm <em>Tristan Radulescu</em></h1>
       <p>
       I'm a developer based in montpellier, france. Right now, I'm building 
-      <Preview client:only="react">
+      <Preview client:only="react" trigger="gists">
         <Preview.Trigger client:only="react" trigger="gists">
         <a href="https://github.com/ferriskey/ferriskey">ferris key</a>
         </Preview.Trigger>
@@ -36,7 +36,7 @@ const collection = await getCollection('blog');
       </Preview>, a next generation IAM provider that aims to make Keycloak obsolete.
       </p>
       <p>
-      I am also a student at <Preview client:only="react">
+      I am also a student at <Preview client:only="react" trigger="polytech">
         <Preview.Trigger client:only="react" trigger="polytech">
           <em>polytech montpellier</em>
         </Preview.Trigger>
@@ -49,7 +49,7 @@ const collection = await getCollection('blog');
       </p>
       <p>
       When I'm not struggling with some random <a href="https://www.root-me.org/Milou666">cryptanalysis</a> <a href="https://cryptohack.org/user/Milou666/">challenge</a>, I play music with my alt/grunge/post-rock band 
-      <Preview client:only="react">
+      <Preview client:only="react" trigger="blackapril">
         <Preview.Trigger client:only="react" trigger="blackapril">
       <a href="https://www.instagram.com/black.april_band/" >black april✨</a>
         </Preview.Trigger>
@@ -71,7 +71,7 @@ const collection = await getCollection('blog');
       ))
       }</br>
       in case you're old school, 
-      <Preview client:only="react">
+      <Preview client:only="react" trigger="cv">
         <Preview.Trigger client:only="react" trigger="cv">
 <a   href={RESUME_LINK}>download my resume here</a>
         </Preview.Trigger>
