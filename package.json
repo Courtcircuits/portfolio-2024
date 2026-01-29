@@ -9,23 +9,29 @@
     "preview": "__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=bore.pub astro preview",
     "astro": "astro"
   },
+  "pnpm": {
+    "overrides": {
+      "lodash@<=4.17.22": "^4.17.23",
+      "undici@<6.23.0": "^6.23.0"
+    }
+  },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.3.6",
-    "@astrojs/react": "^4.4.0",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.2",
     "@nanostores/react": "^0.8.4",
-    "@types/react": "^18.3.24",
+    "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
-    "astro": "^5.14.1",
+    "astro": "^5.16.16",
     "framer-motion": "^11.18.2",
     "nanostores": "^0.11.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.9.2"
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@codedependant/semantic-release-docker": "^5.1.1"
