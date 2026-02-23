@@ -40,9 +40,14 @@ export const TALKS = [
 export const CONTRIBUTIONS = [
     {
         name: "Ferris Key [Core Team Member]",
-        to: "https://github.com/ferriskey/ferriskey",
-        description: "Building a next-generation IAM written in Rust"
+        to: "https://github.com/ferriskey/ferriskey/pulls?q=is%3Apr+author%3ACourtcircuits+is%3Aclosed",
+        description: "Building a next-generation IAM written in Rust (mainly worked on realm settings)"
     },
+	{
+		name: "PYCA [Committer]",
+		to: "https://github.com/pyca/cryptography/pull/13759",
+		description: "Adding deep-copy support for every key type in the python cryptographic authority library"
+	},
     {
         name: "Gleam compiler [Committer]",
         to: "https://github.com/gleam-lang/gleam/pull/4907",
