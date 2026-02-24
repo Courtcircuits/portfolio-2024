@@ -7,6 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import LinkTable from '../components/LinkTable.astro';
 import { SOCIALS } from '../consts';
 import { hasEarlyAccess } from '../utils/get';
+import HeroNoise from '../components/HeroNoise';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -23,7 +24,6 @@ console.log(params);
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		
 	</head>
 
 	<body>
@@ -48,7 +48,7 @@ console.log(params);
 					</div>
           {
               tags && (
-                <div class="tags">
+			  <div class="tags pb-4">
                   {
                     tags.map((tag) => (
                     <span class="tag"><p class="text-accent font-mono m-0 mb-0 p-0 h-fit"># </p>{tag}</span>
@@ -58,6 +58,7 @@ console.log(params);
               )
             }
           </div>
+		  <HeroNoise client:load src={heroImage} alt={title} />
           {
             tags?.includes("wip") ? (
               <div class="wip">

@@ -2,10 +2,10 @@
 title: hacking dagger to play starcraft
 description: during 2025 dagger hack night, with two friends, we managed to play starcraft in dagger while being on linux. this is a deep dive into how we managed to do it.
 pubDate: Apr 5, 2025
-heroImage: /blog-placeholder-3.jpg
+heroImage: /dagger.png
 tags:
   - virt&chips
-  - DaaS 
+  - DaaS
   - rex
 ---
 
