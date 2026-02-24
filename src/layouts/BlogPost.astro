@@ -58,7 +58,11 @@ console.log(params);
               )
             }
           </div>
-		  <HeroNoise client:load src={heroImage} alt={title} />
+		  {
+		  heroImage && (
+				<HeroNoise client:load src={heroImage} alt={title} grainSize={0.2}/>
+		  )
+		  }
           {
             tags?.includes("wip") ? (
               <div class="wip">

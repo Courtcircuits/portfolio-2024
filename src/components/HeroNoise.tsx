@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 interface Props {
   src: string;
   alt: string;
+  grainSize?: number;
 }
 
 function smoothstep(x: number) {
@@ -25,9 +26,7 @@ function noise(x: number, y: number, z: number) {
   return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
 }
 
-const SCALE = 4;
-
-export default function HeroNoise({ src, alt }: Props) {
+export default function HeroNoise({ src, alt, grainSize = 4 }: Props) {
   const imgRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -41,8 +40,8 @@ export default function HeroNoise({ src, alt }: Props) {
     let raf: number;
 
     function resize() {
-      canvas!.width  = Math.max(1, Math.floor(img!.offsetWidth  / SCALE));
-      canvas!.height = Math.max(1, Math.floor(img!.offsetHeight / SCALE));
+      canvas!.width  = Math.max(1, Math.floor(img!.offsetWidth  / grainSize));
+      canvas!.height = Math.max(1, Math.floor(img!.offsetHeight / grainSize));
     }
 
     function draw() {
@@ -61,7 +60,7 @@ export default function HeroNoise({ src, alt }: Props) {
       }
 
       ctx.putImageData(imageData, 0, 0);
-	  setTimeout(() => raf = requestAnimationFrame(draw), 300); // Limit to ~30 FPS
+	  setTimeout(() => raf = requestAnimationFrame(draw), 1000); // Limit to ~30 FPS
       // raf = requestAnimationFrame(draw);
     }
 
