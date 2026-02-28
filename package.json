@@ -25,7 +25,7 @@
     "@nanostores/react": "^0.8.4",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
-    "astro": "^5.17.3",
+    "astro": "^5.18.0",
     "framer-motion": "^11.18.2",
     "nanostores": "^0.11.4",
     "react": "^18.3.1",
