@@ -15,7 +15,7 @@ interface Props {
 
 const {title, items} = Astro.props;
 
-function transformToId(value) {
+function transformToId(value: string) {
 		return value.replaceAll(" ", "-").toLowerCase();
 }
 
