@@ -14,10 +14,16 @@ interface Props {
 }
 
 const {title, items} = Astro.props;
+
+function transformToId(value) {
+		return value.replaceAll(" ", "-").toLowerCase();
+}
+
+const id = transformToId(title);
 ---
 
 <section class="w-full mt-[70px]">
-  <h2>{title}</h2>
+		<h2 id={id}>{title}</h2>
   <ol>
   {
   items.length == 0 ? <p>No items</p> :

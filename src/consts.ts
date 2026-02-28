@@ -44,6 +44,11 @@ export const CONTRIBUTIONS = [
         description: "Building a next-generation IAM written in Rust (mainly worked on realm settings)"
     },
 	{
+		name: "Hardy [Committer]",
+		to: "https://github.com/ricktaylor/hardy/pull/389",
+		description: "[IN REVIEW] TLS and devx stuff"
+	},
+	{
 		name: "PYCA [Committer]",
 		to: "https://github.com/pyca/cryptography/pull/13759",
 		description: "Adding deep-copy support for every key type in the python cryptographic authority library"
