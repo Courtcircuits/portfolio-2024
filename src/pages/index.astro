@@ -1,9 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import {Window} from '../components/Window.tsx';
-import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, HACKATHONS, TALKS, CONTRIBUTIONS } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS, RESUME_LINK, PROJECTS, TALKS, CONTRIBUTIONS } from '../consts';
 import LinkTable from '../components/LinkTable.astro';
 import { getCollection } from 'astro:content';
 import { Preview } from '../components/Preview.tsx'
@@ -23,7 +22,7 @@ const collection = await getCollection('blog');
 		<main>
       <h1>Hi there, I'm <em>Tristan Radulescu</em></h1>
       <p>
-      I'm a developer based in montpellier, france. Right now, I'm building 
+	  I'm a software engineer currently based in Lisbon, Portugal. Right now, I'm not set on my next side-project but you can check my last one : 
       <Preview client:only="react" trigger="htc">
         <Preview.Trigger client:only="react" trigger="htc">
 		<a href="https://hackthecrous.com">Hack The Crous</a>
@@ -36,7 +35,7 @@ const collection = await getCollection('blog');
       </Preview>, a nice tool to help student eat healthy.
       </p>
       <p>
-      I am also a student at <Preview client:only="react" trigger="polytech">
+      I recently graduated from <Preview client:only="react" trigger="polytech">
         <Preview.Trigger client:only="react" trigger="polytech">
           <em>polytech montpellier</em>
         </Preview.Trigger>
@@ -45,7 +44,7 @@ const collection = await getCollection('blog');
             <img src="/do-compressed3.png" width={200} class="p-1 z-100 relative" />
             </Window>
         </Preview.Content>
-      </Preview> (in the devops section) and I'm currently an apprentice in saving the world at <a href="https://sweep.net">sweep</a> mainly working on integrating agentic AI to the platform and fixing performance issues related to realtime analytics.
+      </Preview> (in the devops section) and I'm currently a sofware engineer intern at <a href="https://cloudflare.com">cloudflare</a> working on the realtime products.
       </p>
       <p>
       When I'm not struggling with some random <a href="https://www.root-me.org/Milou666">cryptanalysis</a> <a href="https://cryptohack.org/user/Milou666/">challenge</a>, I play music with my alt/grunge/post-rock band 
@@ -69,18 +68,7 @@ const collection = await getCollection('blog');
       { index != SOCIALS.length -1 ? "·" : ""}
       </span>
       ))
-      }</br>
-      in case you're old school, 
-      <Preview client:only="react" trigger="cv">
-        <Preview.Trigger client:only="react" trigger="cv">
-<a   href={RESUME_LINK}>download my resume here</a>
-        </Preview.Trigger>
-        <Preview.Content client:only="react" trigger="cv">
-          <Window title='RESUME.PDF' className='rotate-3'>
-            <img src="/cv.png" class="p-1" />
-            </Window>
-        </Preview.Content>
-      </Preview>.
+      }<br/>
       </p>
 
       <LinkTable title="MY WORK" items={PROJECTS}/>
@@ -94,8 +82,6 @@ const collection = await getCollection('blog');
       <LinkTable title="MY TALKS" items={TALKS}/>
       <Footer/>
 		</main>
-
-
 	</body>
 <script>
   document.querySelectorAll(".up").forEach((el)=>{

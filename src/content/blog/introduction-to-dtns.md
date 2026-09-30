@@ -1,5 +1,5 @@
 ---
-title: discovering stellar networks
+title: building a space-proof VPN 🚧
 description: basically i'm trying to understand how do people communicate with space
 pubDate: Feb 24, 2026
 heroImage: /dtns.png

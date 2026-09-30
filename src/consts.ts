@@ -39,14 +39,14 @@ export const TALKS = [
 
 export const CONTRIBUTIONS = [
     {
-        name: "Ferris Key [Core Team Member]",
+        name: "Ferris Key [Contributor]",
         to: "https://github.com/ferriskey/ferriskey/pulls?q=is%3Apr+author%3ACourtcircuits+is%3Aclosed",
-        description: "Building a next-generation IAM written in Rust (mainly worked on realm settings)"
+        description: "Helped with early-development"
     },
 	{
 		name: "Hardy [Committer]",
 		to: "https://github.com/ricktaylor/hardy/pull/389",
-		description: "[IN REVIEW] TLS and devx stuff"
+		description: "TLS and devx stuff"
 	},
 	{
 		name: "PYCA [Committer]",
@@ -89,13 +89,13 @@ export const PROJECTS = [
         description: "a minimalist CI engine in rust",
     },
     {
-        name: "hackthecrous.com [☠️]",
+        name: "hackthecrous.com",
         to: "https://hackthecrous.com",
         description: "all university food menus in less than a click",
     },
     {
         name: "gists.app [☠️]",
-        to: "https://gists.app",
+        to: "https://github.com/gistsapp",
         description: "an end-to-end encrypted script vault",
     },
 ];

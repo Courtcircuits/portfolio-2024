@@ -1,7 +1,4 @@
 import {
-  useEffect,
-  useRef,
-  type MouseEventHandler,
   type ReactNode,
 } from "react";
 
@@ -32,7 +29,7 @@ function Trigger({
 }) {
   return (
     <span
-      onMouseOver={(e) => {
+      onMouseOver={() => {
         isVisible.set(trigger);
       }}
       onMouseMove={(e) => {
